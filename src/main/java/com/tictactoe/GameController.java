@@ -41,47 +41,47 @@ public class GameController {
 
     @FXML
     void onButtonClick00(ActionEvent event) {
-        playerMove(button00, 0 , 0, gameState);
+        playerMove(button00, "00", gameState);
     }
 
     @FXML
     void onButtonClick01(ActionEvent event) {
-        playerMove(button01, 0 , 1, gameState);
+        playerMove(button01, "01", gameState);
     }
 
     @FXML
     void onButtonClick02(ActionEvent event) {
-        playerMove(button02, 0 , 2, gameState);
+        playerMove(button02, "02", gameState);
     }
 
     @FXML
     void onButtonClick10(ActionEvent event) {
-        playerMove(button10, 1 , 0, gameState);
+        playerMove(button10, "10", gameState);
     }
 
     @FXML
     void onButtonClick11(ActionEvent event) {
-        playerMove(button11, 1 , 1, gameState);
+        playerMove(button11, "11", gameState);
     }
 
     @FXML
     void onButtonClick12(ActionEvent event) {
-        playerMove(button12, 1 , 2, gameState);
+        playerMove(button12, "12", gameState);
     }
 
     @FXML
     void onButtonClick20(ActionEvent event) {
-        playerMove(button20, 2 , 0, gameState);
+        playerMove(button20, "20", gameState);
     }
 
     @FXML
     void onButtonClick21(ActionEvent event) {
-        playerMove(button21, 2 , 1, gameState);
+        playerMove(button21, "21", gameState);
     }
 
     @FXML
     void onButtonClick22(ActionEvent event) {
-        playerMove(button22, 2 , 2, gameState);
+        playerMove(button22, "22", gameState);
     }
 
     void setButtonAbility(boolean bool) {
@@ -113,16 +113,15 @@ public class GameController {
 
     }
 
-
-    void playerMove(Button button, int x, int y, BoardState gameState) {
+    void playerMove(Button button, String boardCoord, BoardState gameState) {
         if ((!Objects.equals(button.getText(), "X")) && (!Objects.equals(button.getText(), "O"))) {
-            button.setText(gameState.getWhoseTurn());
-            gameState.setBoardSquare(x, y);
-            if (gameState.checkWinCondition(gameState)) {
+            button.setText(String.valueOf(gameState.getWhoseTurn()));
+            gameState.setBoardSquare(boardCoord);
+            if (gameState.checkWin()) {
                 textWinOrLose.setText(gameState.getWhoseTurn() + " Won!");
                 setButtonAbility(true);
             }
-            else if (gameState.getTurnCount() > 4) {
+            else if (gameState.getTurnCount() > 7) {
                 if (gameState.checkLoseCondition()) {
                     textWinOrLose.setText("Cat's Game!");
                 }
